@@ -1,6 +1,6 @@
 let text;
 let database = [];
-let num = 0;
+let num = 1;
 
 function addElement() {
 
@@ -12,39 +12,23 @@ function addElement() {
     container.classList.add("container");
     const bg = document.getElementById("content");
     bg.appendChild(container);
-    num++;
-
+    
     const newDiv = document.createElement("div");
     const newbut = document.createElement("button");
     newDiv.classList.add("item");
     newbut.classList.add("button");
-    cont.appendChild(newDiv);
+    document.getElementById(num).appendChild(newbut);
+    document.getElementById(num).appendChild(newDiv);
 
+    let info = "  " + database[num];
     newbut.appendChild(document.createTextNode("-"));
-    const myNodeList = bg.querySelectorAll("div");
+    newDiv.appendChild(document.createTextNode(info));
+    num++;
 
-    for (let i = 1; i <= myNodeList.length; i++) {      
-        let div_id = i;
-        let element = document.getElementById(div_id);
-        if(element.firstChild){
-            element.removeChild(element.firstChild);
-        }
-        let info = div_id + " . " + database[i];
-        let newContent = document.createTextNode(info);        
-        element.appendChild(newContent);
-    }
-
-    
-    let button =  document.getElementById(but_id);
-    button.addEventListener("click", function(){rmElement(con_id)});   
+    container.addEventListener("click", function(){
+        bg.removeChild(container);
+    });   
 }
-
-function rmElement(id){
-    const bg = document.getElementById("content");
-    const con = document.getElementById(id);
-    bg.removeChild(con);
-}
-
 
 let add = document.getElementById("add_icon");
 add.addEventListener("click", function(){addElement()});
